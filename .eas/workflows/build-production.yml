@@ -1,0 +1,32 @@
+# Production store builds, then store submission for both platforms.
+# Runs on EAS infrastructure; EXPO_TOKEN, build env, and store-submission
+# credentials are configured in the EAS project (not GitHub secrets).
+# Trigger from the EAS dashboard or `eas workflow:run build-production.yml`.
+
+name: Build production
+
+jobs:
+  build_android:
+    name: Build Android app
+    type: build
+    params:
+      platform: android
+      profile: production
+  build_ios:
+    name: Build iOS app
+    type: build
+    params:
+      platform: ios
+      profile: production
+  submit_android:
+    name: Submit Android
+    type: submit
+    needs: [build_android]
+    params:
+      build_id: ${{ needs.build_android.outputs.build_id }}
+  submit_ios:
+    name: Submit iOS
+    type: submit
+    needs: [build_ios]
+    params:
+      build_id: ${{ needs.build_ios.outputs.build_id }}

@@ -1,0 +1,271 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error_generic": "Something went wrong. Please try again."
+  },
+  "error_boundary": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred. You can try again, and if the problem continues, restart the app.",
+    "retry": "Try again"
+  },
+  "network": {
+    "offline": "No internet connection"
+  },
+  "updates": {
+    "available": "A new update is available",
+    "reload": "Update now"
+  },
+  "not_found": {
+    "title": "Oops!",
+    "heading": "This screen doesn't exist",
+    "subtitle": "The page you're looking for can't be found.",
+    "action": "Go to home"
+  },
+  "account": {
+    "delete": {
+      "action": "Delete account",
+      "confirm_title": "Delete account?",
+      "confirm_message": "Your account will be scheduled for deletion. You can restore it by signing back in within 30 days.",
+      "confirm": "Delete",
+      "cancel": "Cancel",
+      "biometric_prompt": "Confirm to delete your account",
+      "error": "Could not delete your account. Please try again."
+    },
+    "restore": {
+      "title": "Account deletion",
+      "heading": "Your account is scheduled for deletion",
+      "body": "This account will be permanently deleted on {{date}}. Restore it to keep your data, or sign out to let the deletion proceed.",
+      "restore_action": "Restore account",
+      "sign_out_action": "Sign out",
+      "error": "Something went wrong. Please try again."
+    }
+  },
+  "auth": {
+    "continue_apple": "Continue with Apple",
+    "continue_google": "Continue with Google",
+    "create_account": "Create account",
+    "email_label": "Email",
+    "errors": {
+      "apple_failed": "Apple sign-in failed. Please try again.",
+      "email_invalid": "Invalid email format",
+      "email_required": "Email is required",
+      "google_failed": "Google sign-in failed. Please try again.",
+      "name_required": "Name is required",
+      "otp_invalid": "That code is incorrect or expired.",
+      "otp_send_failed": "Could not send the code. Please try again.",
+      "password_mismatch": "Passwords don't match",
+      "password_required": "Password is required",
+      "password_too_short": "Password must be at least 10 characters",
+      "reset_failed": "Could not reset your password. Please try again.",
+      "sign_in_failed": "Could not sign in. Please try again.",
+      "sign_up_failed": "Could not create your account. Please try again."
+    },
+    "forgot": {
+      "submit": "Send reset code",
+      "subtitle": "Enter your email and we'll send you a code to reset your password.",
+      "title": "Forgot password"
+    },
+    "forgot_password": "Forgot password?",
+    "have_account": "Already have an account?",
+    "name_label": "Name",
+    "no_account": "Don't have an account?",
+    "or": "or",
+    "otp": {
+      "code_label": "Verification code",
+      "invalid_length": "Enter the 6-digit code",
+      "resend": "Resend code",
+      "subtitle": "Enter the 6-digit code sent to {{email}}.",
+      "title": "Check your email",
+      "verify": "Verify"
+    },
+    "password_label": "Password",
+    "reset": {
+      "confirm_password_label": "Confirm password",
+      "new_password_label": "New password",
+      "submit": "Reset password",
+      "subtitle": "Enter the code sent to {{email}} and choose a new password.",
+      "success": "Your password has been reset. You can now sign in.",
+      "title": "Reset password"
+    },
+    "sign_in": {
+      "send_code": "Send code",
+      "submit": "Sign in",
+      "subtitle": "Sign in to continue.",
+      "title": "Sign In",
+      "use_code": "Use a code instead",
+      "use_password": "Use password instead"
+    },
+    "sign_in_link": "Sign in",
+    "sign_up": {
+      "submit": "Create account",
+      "subtitle": "Create an account to get started.",
+      "title": "Create account"
+    }
+  },
+  "biometric_lock": {
+    "subtitle": "Unlock with Face ID or Touch ID to continue.",
+    "unlock": "Unlock",
+    "error": "Couldn't verify it's you. Try again.",
+    "prompt": "Unlock to continue",
+    "enable_prompt": "Confirm to turn on app lock",
+    "settings_label": "App lock"
+  },
+  "legal": {
+    "placeholder_notice": "Placeholder — replace this with your actual policy before shipping.",
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "This is placeholder privacy policy text. It describes, in plain terms, how this app would handle your information once a real policy is in place.",
+      "collect": "We may collect the information you provide and basic usage data needed to operate the app. Replace this section with the specific data your app actually collects.",
+      "use": "Any information collected would be used only to run and improve the app, and would not be sold. Replace this with your real data-use and sharing practices.",
+      "contact": "Questions about privacy can be directed to the app owner. Add your real contact details here before release."
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "intro": "This is placeholder terms-of-service text. It outlines the basic agreement between you and the app owner once real terms are in place.",
+      "use": "You agree to use the app lawfully and not to misuse or disrupt it. Replace this section with your actual acceptable-use rules.",
+      "liability": "The app is provided \"as is\" without warranties, to the extent permitted by law. Replace this with your real liability and warranty terms.",
+      "contact": "Questions about these terms can be directed to the app owner. Add your real contact details here before release."
+    }
+  },
+  "onboarding": {
+    "title": "Everything you need to ship your app",
+    "subtitle": "A production-ready foundation, so you can focus on what makes your app yours.",
+    "feature_production": "Production-ready out of the box",
+    "feature_experience": "A developer experience you'll love",
+    "feature_minimal": "Minimal, well-maintained dependencies",
+    "get_started": "Get started"
+  },
+  "profile": {
+    "title": "Profile",
+    "save": "Save",
+    "saved": "Profile updated",
+    "bio_label": "Bio",
+    "sign_in_prompt": "Sign in",
+    "avatar": {
+      "title": "Profile picture",
+      "edit_hint": "Tap to change",
+      "choose_photo": "Choose Photo",
+      "take_photo": "Take Photo",
+      "remove_photo": "Remove Photo",
+      "cancel": "Cancel",
+      "permission_denied": "Permission is required to access your photos or camera.",
+      "upload_failed": "Could not update your photo. Please try again.",
+      "remove_failed": "Could not remove your photo. Please try again."
+    },
+    "errors": {
+      "bio_too_long": "Bio must be 500 characters or less",
+      "save_failed": "Could not save your changes. Please try again."
+    }
+  },
+  "sessions": {
+    "title": "Active sessions",
+    "empty": "No active sessions.",
+    "this_device": "This device",
+    "retry": "Retry",
+    "device": {
+      "iphone": "iPhone",
+      "ipad": "iPad",
+      "android": "Android device",
+      "mac": "Mac",
+      "windows": "Windows",
+      "linux": "Linux",
+      "unknown": "Unknown device"
+    },
+    "time": {
+      "just_now": "Just now",
+      "minutes_ago": "{{count}} min ago",
+      "hours_ago": "{{count}} hr ago",
+      "days_ago": "{{count}} d ago"
+    },
+    "revoke": {
+      "action": "Revoke",
+      "title": "Revoke session?",
+      "message": "This device will be signed out.",
+      "confirm": "Revoke",
+      "cancel": "Cancel"
+    },
+    "errors": {
+      "load_failed": "Could not load your sessions. Please try again.",
+      "revoke_failed": "Could not revoke that session. Please try again."
+    }
+  },
+  "settings": {
+    "about": "About",
+    "active_sessions": "Active sessions",
+    "app_name": "App Name",
+    "arabic": "Arabic",
+    "english": "English",
+    "generale": "General",
+    "github": "Github",
+    "haptics": "Haptics",
+    "language": "Language",
+    "link_error": "Couldn't open that link.",
+    "links": "Links",
+    "logout": "Logout",
+    "more": "More",
+    "privacy": "Privacy Policy",
+    "rate": "Rate",
+    "share": "Share",
+    "share_message": "Check out {{name}}!",
+    "share_unavailable": "Sharing isn't available here.",
+    "support": "Support",
+    "support_subject": "{{name}} support",
+    "support_us": "Support Us",
+    "terms": "Terms of Service",
+    "theme": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System",
+      "title": "Theme"
+    },
+    "title": "Settings",
+    "upgrade": "Upgrade to Pro",
+    "version": "Version",
+    "website": "Website"
+  },
+  "home": {
+    "tab": "Home",
+    "hero": {
+      "title": "Expo Forge",
+      "tagline": "A batteries-included starting point for your cross-platform app."
+    },
+    "quick_start": "Quick start",
+    "greeting": {
+      "signed_in_title": "Welcome back, {{name}}",
+      "signed_in_subtitle": "View and edit your profile",
+      "signed_out_title": "Sign in",
+      "signed_out_subtitle": "Sync your data across devices"
+    },
+    "cards": {
+      "style": {
+        "title": "Explore the design system",
+        "description": "Browse the components, colors, and typography"
+      },
+      "settings": {
+        "title": "Settings",
+        "description": "Theme, language, and app preferences"
+      }
+    }
+  },
+  "style": {
+    "tab": "Style"
+  },
+  "purchases": {
+    "title": "Go Pro",
+    "tagline": "Unlock everything with a one-time look at the upgrade options.",
+    "status_label": "Your plan",
+    "pro": "Pro",
+    "free": "Free",
+    "pro_active": "You're all set — thanks for going Pro.",
+    "upgrade": "Upgrade",
+    "restore": "Restore purchases",
+    "not_configured": "In-app purchases aren't configured in this build.",
+    "error": "Something went wrong. Please try again."
+  },
+  "ui": {
+    "empty": {
+      "title": "Nothing here yet",
+      "subtitle": "There's nothing to show right now."
+    }
+  }
+}

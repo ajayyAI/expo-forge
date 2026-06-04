@@ -1,0 +1,86 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.16/schema.json",
+  "extends": ["ultracite/core", "ultracite/react"],
+  "files": {
+    "includes": [
+      "!android",
+      "!ios",
+      "!dist",
+      "!coverage",
+      "!.expo",
+      "!.vscode",
+      "!bun.lock",
+      "!**/*.d.ts",
+      "!expo-env.d.ts",
+      "!uniwind-env.d.ts",
+      "!uniwind-types.d.ts"
+    ]
+  },
+  "javascript": {
+    "globals": [
+      "describe",
+      "it",
+      "test",
+      "expect",
+      "jest",
+      "beforeEach",
+      "afterEach",
+      "beforeAll",
+      "afterAll",
+      "__DEV__",
+      "ErrorUtils"
+    ]
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        "useBlockStatements": "off",
+        // The base shell uses barrel `index` files as a deliberate public-API
+        // boundary per feature/lib folder; keep that architecture.
+        "noExportedImports": "off"
+      },
+      "performance": {
+        "noNamespaceImport": "off",
+        // Barrel `index.tsx` re-exports are the intentional module pattern of
+        // the base shell.
+        "noBarrelFile": "off",
+        // Regex literals in tests/config scripts are not hot paths; the few
+        // genuine cases carry scoped biome-ignore comments.
+        "useTopLevelRegex": "error"
+      },
+      "correctness": {
+        // TanStack Form / React Query expose a render-prop `children` API
+        // (`<form.Field children={...} />`); this is the library contract.
+        "noChildrenProp": "off"
+      },
+      "suspicious": {
+        // Enforced for downstream apps; the few genuine type-erasure
+        // boundaries (zustand selector helper, generic API utils, form
+        // adapters) carry scoped biome-ignore comments at their sites.
+        "noExplicitAny": "error",
+        // Enforced for downstream apps; intentional empty placeholder handlers
+        // carry scoped biome-ignore comments at their sites.
+        "noEmptyBlockStatements": "error",
+        "noUnknownAtRules": {
+          "level": "error",
+          "options": {
+            "ignore": ["tailwind", "apply", "theme", "source"]
+          }
+        }
+      }
+    }
+  },
+  "overrides": [
+    {
+      // Convex modules are referenced by filename in the generated `api`
+      // surface and follow Convex's camelCase module convention
+      // (e.g. `rateLimit.ts` -> `api.rateLimit`). Don't force kebab-case here.
+      "includes": ["convex/**"],
+      "linter": {
+        "rules": {
+          "style": { "useFilenamingConvention": "off" }
+        }
+      }
+    }
+  ]
+}

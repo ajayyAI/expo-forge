@@ -1,0 +1,92 @@
+# 🚨 GITHUB SECRETS REQUIRED: NONE
+
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  lint:
+    name: Lint (Biome)
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout project repo
+        uses: actions/checkout@v4
+
+      - name: 🥟 Setup Node + Bun + install deps
+        uses: ./.github/actions/setup-node-bun-install
+
+      - name: 🏃 Run Biome check
+        run: bunx ultracite check
+
+  type-check:
+    name: Type Check (tsc)
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout project repo
+        uses: actions/checkout@v4
+
+      - name: 🥟 Setup Node + Bun + install deps
+        uses: ./.github/actions/setup-node-bun-install
+
+      - name: 📦 Install Reviewdog
+        if: github.event_name == 'pull_request'
+        uses: reviewdog/action-setup@v1
+
+      - name: 🏃 Run TypeScript PR
+        if: github.event_name == 'pull_request'
+        run: |
+          bun run type-check | reviewdog -name="tsc" -efm="%f(%l,%c): error TS%n: %m" -reporter="github-pr-review" -filter-mode="nofilter" -fail-on-error -tee
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🏃 Run TypeScript Commit
+        if: github.event_name != 'pull_request'
+        run: bun run type-check
+
+  translations:
+    name: Translations
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout project repo
+        uses: actions/checkout@v4
+
+      - name: 🥟 Setup Node + Bun + install deps
+        uses: ./.github/actions/setup-node-bun-install
+
+      - name: 🏃 Check translations
+        run: bun run lint:translations
+
+  test:
+    name: Tests (jest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout project repo
+        uses: actions/checkout@v4
+
+      - name: 🥟 Setup Node + Bun + install deps
+        uses: ./.github/actions/setup-node-bun-install
+
+      - name: 🏃 Run Tests
+        run: bun run test:ci
+
+      - name: Jest Coverage Comment
+        uses: MishaKav/jest-coverage-comment@v1.0.33
+        if: (success() || failure()) && github.event_name == 'pull_request'
+        with:
+          coverage-summary-path: ./coverage/coverage-summary.json
+          summary-title: 💯 Test Coverage
+          badge-title: Coverage
+          create-new-comment: false
+          junitxml-title: 😎 Tests Results
+          junitxml-path: ./coverage/jest-junit.xml
+          coverage-title: 👀 Tests Details
+          coverage-path: ./coverage/coverage.txt
+          report-only-changed-files: true

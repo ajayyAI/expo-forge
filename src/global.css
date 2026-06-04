@@ -1,0 +1,175 @@
+/* Import Tailwind base styles */
+@import "tailwindcss";
+@import "uniwind";
+/* HeroUI Native default theme tokens (light/dark via Uniwind @variant themes). */
+@import "heroui-native/styles";
+
+/* Define your theme in CSS (replaces tailwind.config.js) */
+@theme {
+  /* Font families */
+  --font-family-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Base colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Charcoal palette */
+  --color-charcoal-50: #f5f4f2;
+  --color-charcoal-100: #e7e5e1;
+  --color-charcoal-200: #cbc7c1;
+  --color-charcoal-300: #b0aca4;
+  --color-charcoal-400: #969188;
+  --color-charcoal-500: #7c776e;
+  --color-charcoal-600: #615d56;
+  --color-charcoal-700: #46433e;
+  --color-charcoal-800: #36322e;
+  --color-charcoal-850: #2b2824;
+  --color-charcoal-900: #1c1a17;
+  --color-charcoal-950: #0b0a09;
+
+  /* Neutral palette */
+  --color-neutral-50: #fafaf9;
+  --color-neutral-100: #f5f4f2;
+  --color-neutral-200: #ebe9e5;
+  --color-neutral-300: #d8d4ce;
+  --color-neutral-400: #a8a29a;
+  --color-neutral-500: #78726b;
+  --color-neutral-600: #57534e;
+  --color-neutral-700: #403d39;
+  --color-neutral-800: #292524;
+  --color-neutral-900: #1a1714;
+
+  /* Primary palette */
+  --color-primary-50: #fff3e9;
+  --color-primary-100: #ffe0c7;
+  --color-primary-200: #ffcba1;
+  --color-primary-300: #ffb070;
+  --color-primary-400: #fd9d45;
+  --color-primary-500: #fb8c2e;
+  --color-primary-600: #ea6a0a;
+  --color-primary-700: #c2540a;
+  --color-primary-800: #9c440a;
+  --color-primary-900: #7a340a;
+
+  /* Success palette */
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532d;
+
+  /* Warning palette */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+
+  /* Danger palette */
+  --color-danger-50: #fef2f2;
+  --color-danger-100: #fee2e2;
+  --color-danger-200: #fecaca;
+  --color-danger-300: #fca5a5;
+  --color-danger-400: #f87171;
+  --color-danger-500: #ef4444;
+  --color-danger-600: #dc2626;
+  --color-danger-700: #b91c1c;
+  --color-danger-800: #991b1b;
+  --color-danger-900: #7f1d1d;
+}
+
+/*
+ * App-level semantic tokens, layered ON TOP of HeroUI Native's defaults.
+ * These resolve via Uniwind's `light` / `dark` themes (driven by
+ * `Uniwind.setTheme()` — the same mechanism HeroUI Native uses for its own
+ * `@variant light` / `@variant dark` blocks). Keep these in sync with
+ * `src/components/ui/theme.ts`, which exposes the same values to JS.
+ */
+@layer theme {
+  :root {
+    /* Theme-invariant app tokens. */
+    --ring: #ea6a0a;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+  }
+
+  /*
+   * Light/dark token sets live in separate `:root` blocks. Splitting them
+   * keeps each property declared once per rule (the same value would otherwise
+   * trip Biome's noDuplicateCustomProperties across the two `@variant` blocks),
+   * while Uniwind still resolves the active theme via `Uniwind.setTheme()`.
+   */
+  :root {
+    @variant light {
+      --background: #fafaf9;
+      --foreground: #1a1714;
+      --surface: #ffffff;
+      --border: #d8d4ce;
+      --separator: #d8d4ce;
+      --default: #ebe9e5;
+      --muted: #78726b;
+      --field-background: #ffffff;
+      --field-foreground: #1a1714;
+      --field-placeholder: #a8a29a;
+      --card-foreground: #1a1714;
+      --muted-foreground: #78726b;
+      --input: #e1ded8;
+      /* Brand accent — overrides HeroUI's default blue so primary buttons,
+       * `bg-accent`, and the focus ring inherit the brand orange. Mirrors the
+       * `accent` / `accentForeground` / `ring` values in theme.ts. */
+      --accent: #ea6a0a;
+      --accent-foreground: #ffffff;
+      --focus: #ea6a0a;
+    }
+  }
+
+  :root {
+    @variant dark {
+      --background: #0b0a09;
+      --foreground: #f5f4f2;
+      --surface: #1c1a17;
+      --border: #36322e;
+      --separator: #46433e;
+      --default: #292524;
+      --muted: #a8a29a;
+      --field-background: #1c1a17;
+      --field-foreground: #f5f4f2;
+      --field-placeholder: #78726b;
+      --card-foreground: #f5f4f2;
+      --muted-foreground: #a8a29a;
+      --input: #46433e;
+      --accent: #ea6a0a;
+      --accent-foreground: #ffffff;
+      --focus: #ea6a0a;
+    }
+  }
+}
+
+/* Map the app semantic tokens to Tailwind color utilities. */
+@theme inline {
+  /* `card` aliases HeroUI's `surface` so app code can use either name. */
+  --color-card: var(--surface);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+}
+
+/* Custom utilities (if needed) */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -1,0 +1,19 @@
+# Publishes an over-the-air JS update to the production branch.
+# Runs on EAS infrastructure; EXPO_TOKEN and update env come from the EAS project.
+# On-demand by default: an OTA only applies to installed binaries whose
+# runtimeVersion matches, so auto-publishing every merge can ship JS that
+# outruns the native build. To auto-publish, uncomment the trigger below.
+#
+# on:
+#   push:
+#     branches: ['main']
+
+name: Publish update
+
+jobs:
+  publish_update:
+    name: Publish OTA update
+    type: update
+    environment: production
+    params:
+      branch: production

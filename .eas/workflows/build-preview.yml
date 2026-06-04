@@ -1,0 +1,19 @@
+# On-demand internal-distribution builds for both platforms.
+# Runs on EAS infrastructure; EXPO_TOKEN and build env come from the EAS project.
+# Trigger from the EAS dashboard or `eas workflow:run build-preview.yml`.
+
+name: Build preview
+
+jobs:
+  build_android:
+    name: Build Android app
+    type: build
+    params:
+      platform: android
+      profile: preview
+  build_ios:
+    name: Build iOS app
+    type: build
+    params:
+      platform: ios
+      profile: preview

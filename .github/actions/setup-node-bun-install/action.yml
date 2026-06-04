@@ -1,0 +1,20 @@
+# Expo SDK 56 requires Node >= 20.19.4 (.nvmrc pins it): tsc, jest-expo, and the
+# Expo CLI run on Node, while Bun is only the package manager. Single source of
+# truth for both versions — change here to update every workflow at once.
+
+name: 'Setup Node + Bun + Install Dependencies'
+description: 'Pin Node from .nvmrc, set up Bun, and install from the frozen lockfile'
+runs:
+  using: composite
+  steps:
+    - name: ⬢ Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+
+    - name: 🥟 Setup Bun
+      uses: oven-sh/setup-bun@v2
+
+    - name: 📦 Install deps
+      run: bun install --frozen-lockfile
+      shell: bash
