@@ -14,6 +14,7 @@ import { useCallback, useEffect, useRef } from "react";
 import { Platform } from "react-native";
 
 import { resolveDeepLink } from "@/lib/deep-link";
+import { useLastNotificationResponse } from "./use-last-notification-response";
 
 function routeFromResponse(response: Notifications.NotificationResponse): void {
   // Only a default tap opens the app; custom action buttons keep their own behavior.
@@ -50,9 +51,9 @@ export function useNotificationObserver(): void {
     []
   );
 
-  // Cold start: the tap that launched the app. `useLastNotificationResponse`
-  // surfaces it once on mount; routeOnce marks it consumed.
-  const lastResponse = Notifications.useLastNotificationResponse();
+  // Cold start: the tap that launched the app, surfaced once on mount and
+  // marked consumed by routeOnce. Native-only — the web override returns null.
+  const lastResponse = useLastNotificationResponse();
   useEffect(() => {
     if (lastResponse) {
       routeOnce(lastResponse);
