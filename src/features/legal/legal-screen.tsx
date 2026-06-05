@@ -1,6 +1,12 @@
 import { Stack } from "expo-router";
 
-import { FocusAwareStatusBar, ScrollView, Text, View } from "@/components/ui";
+import {
+  FocusAwareStatusBar,
+  ScreenContainer,
+  ScrollView,
+  Text,
+  View,
+} from "@/components/ui";
 import type { TxKeyPath } from "@/lib/i18n";
 import { translate } from "@/lib/i18n";
 
@@ -26,23 +32,25 @@ export function LegalScreen({ title, body, testID }: Props) {
         contentInsetAdjustmentBehavior="automatic"
         testID={testID}
       >
-        <Text className="mb-4 font-bold text-xl">{heading}</Text>
+        <ScreenContainer>
+          <Text className="mb-4 font-bold text-xl">{heading}</Text>
 
-        <View className="mb-4 rounded-xl border border-warning-300 bg-warning-50 p-3 dark:border-warning-700 dark:bg-warning-900/30">
-          <Text className="text-sm text-warning-800 dark:text-warning-200">
-            {translate("legal.placeholder_notice")}
-          </Text>
-        </View>
+          <View className="mb-4 rounded-xl border border-warning-300 bg-warning-50 p-3 dark:border-warning-700 dark:bg-warning-900/30">
+            <Text className="text-sm text-warning-800 dark:text-warning-200">
+              {translate("legal.placeholder_notice")}
+            </Text>
+          </View>
 
-        {body.map((paragraph, i) => (
-          <Text
-            className="mb-3 text-neutral-700 dark:text-neutral-300"
-            // biome-ignore lint/suspicious/noArrayIndexKey: static ordered paragraphs, never reordered
-            key={i}
-          >
-            {paragraph}
-          </Text>
-        ))}
+          {body.map((paragraph, i) => (
+            <Text
+              className="mb-3 text-neutral-700 dark:text-neutral-300"
+              // biome-ignore lint/suspicious/noArrayIndexKey: static ordered paragraphs, never reordered
+              key={i}
+            >
+              {paragraph}
+            </Text>
+          ))}
+        </ScreenContainer>
       </ScrollView>
     </>
   );

@@ -14,7 +14,18 @@ import { translate } from "@/lib/i18n";
 export default function TabLayout() {
   return (
     <AuthGate>
-      <Tabs>
+      <Tabs
+        screenOptions={{
+          // Center the bar on the same 672px (max-w-2xl) canvas the screens use,
+          // so the nav lines up with content instead of stretching across desktop.
+          tabBarStyle: {
+            alignSelf: "center",
+            marginHorizontal: "auto",
+            maxWidth: 672,
+            width: "100%",
+          },
+        }}
+      >
         <Tabs.Screen
           name="index"
           options={{
