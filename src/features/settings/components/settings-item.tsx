@@ -18,7 +18,7 @@ export function SettingsItem({ text, value, icon, onPress }: ItemProps) {
       className="min-h-12 flex-1 flex-row items-center justify-between px-4 py-3"
       haptic={isPressable}
       onPress={onPress}
-      pointerEvents={isPressable ? "auto" : "none"}
+      style={{ pointerEvents: isPressable ? "auto" : "none" }}
     >
       <View className="flex-row items-center">
         {icon && <View className="pr-2">{icon}</View>}
