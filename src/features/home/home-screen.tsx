@@ -6,6 +6,7 @@ import {
   FocusAwareStatusBar,
   PressableScale,
   SafeAreaView,
+  ScreenContainer,
   ScrollView,
   Text,
   View,
@@ -56,47 +57,49 @@ export function HomeScreen() {
         contentContainerStyle={{ paddingBottom: ANDROID_TAB_BAR_INSET }}
       >
         <SafeAreaView className="flex-1">
-          <View className="pt-12 pb-8">
-            <Text className="font-bold text-3xl">
-              {translate("home.hero.title")}
+          <ScreenContainer>
+            <View className="pt-12 pb-8">
+              <Text className="font-bold text-3xl">
+                {translate("home.hero.title")}
+              </Text>
+              <Text className="mt-2 text-base text-neutral-500 dark:text-neutral-400">
+                {translate("home.hero.tagline")}
+              </Text>
+            </View>
+
+            <HomeGreeting />
+
+            <Text className="mb-3 font-semibold text-neutral-500 text-sm uppercase dark:text-neutral-400">
+              {translate("home.quick_start")}
             </Text>
-            <Text className="mt-2 text-base text-neutral-500 dark:text-neutral-400">
-              {translate("home.hero.tagline")}
-            </Text>
-          </View>
 
-          <HomeGreeting />
-
-          <Text className="mb-3 font-semibold text-neutral-500 text-sm uppercase dark:text-neutral-400">
-            {translate("home.quick_start")}
-          </Text>
-
-          {quickStarts.map((card, index) => (
-            <AnimatedListItem index={index} key={card.testID}>
-              <PressableScale
-                accessibilityRole="button"
-                className="mb-3"
-                haptic={false}
-                onPress={() => router.push(card.href)}
-                testID={card.testID}
-              >
-                <Surface className="flex-row items-center p-4">
-                  <View className="mr-3 h-10 w-10 items-center justify-center rounded-full bg-primary-100 dark:bg-neutral-700">
-                    {card.icon}
-                  </View>
-                  <View className="flex-1 pr-3">
-                    <Text className="font-semibold text-base">
-                      {translate(card.titleKey)}
-                    </Text>
-                    <Text className="text-neutral-500 text-sm dark:text-neutral-400">
-                      {translate(card.descriptionKey)}
-                    </Text>
-                  </View>
-                  <ArrowRight />
-                </Surface>
-              </PressableScale>
-            </AnimatedListItem>
-          ))}
+            {quickStarts.map((card, index) => (
+              <AnimatedListItem index={index} key={card.testID}>
+                <PressableScale
+                  accessibilityRole="button"
+                  className="mb-3"
+                  haptic={false}
+                  onPress={() => router.push(card.href)}
+                  testID={card.testID}
+                >
+                  <Surface className="flex-row items-center p-4">
+                    <View className="mr-3 h-10 w-10 items-center justify-center rounded-full bg-primary-100 dark:bg-neutral-700">
+                      {card.icon}
+                    </View>
+                    <View className="flex-1 pr-3">
+                      <Text className="font-semibold text-base">
+                        {translate(card.titleKey)}
+                      </Text>
+                      <Text className="text-neutral-500 text-sm dark:text-neutral-400">
+                        {translate(card.descriptionKey)}
+                      </Text>
+                    </View>
+                    <ArrowRight />
+                  </Surface>
+                </PressableScale>
+              </AnimatedListItem>
+            ))}
+          </ScreenContainer>
         </SafeAreaView>
       </ScrollView>
     </>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   FocusAwareStatusBar,
   PressableScale,
+  ScreenContainer,
   ScrollView,
   showErrorMessage,
   Text,
@@ -40,49 +41,51 @@ export function PaywallScreen() {
         contentContainerClassName="flex-grow py-6"
         contentInsetAdjustmentBehavior="automatic"
       >
-        <Text className="text-base text-neutral-500 dark:text-neutral-400">
-          {translate("purchases.tagline")}
-        </Text>
+        <ScreenContainer>
+          <Text className="text-base text-neutral-500 dark:text-neutral-400">
+            {translate("purchases.tagline")}
+          </Text>
 
-        {isEnabled ? (
-          <View className="mt-6">
-            <Surface className="mb-6 p-4">
-              <Text className="font-semibold text-neutral-500 text-sm uppercase dark:text-neutral-400">
-                {translate("purchases.status_label")}
-              </Text>
-              <Text className="mt-1 font-semibold text-xl">
-                {translate(isPro ? "purchases.pro" : "purchases.free")}
+          {isEnabled ? (
+            <View className="mt-6">
+              <Surface className="mb-6 p-4">
+                <Text className="font-semibold text-neutral-500 text-sm uppercase dark:text-neutral-400">
+                  {translate("purchases.status_label")}
+                </Text>
+                <Text className="mt-1 font-semibold text-xl">
+                  {translate(isPro ? "purchases.pro" : "purchases.free")}
+                </Text>
+              </Surface>
+
+              {isPro ? (
+                <Text className="text-base text-neutral-500 dark:text-neutral-400">
+                  {translate("purchases.pro_active")}
+                </Text>
+              ) : (
+                <UpgradeButton
+                  loading={busy || !isReady}
+                  onPress={() => run(presentPaywall)}
+                />
+              )}
+
+              <PressableScale
+                className="mt-4 self-center py-2"
+                onPress={() => run(restore)}
+                testID="paywall-restore"
+              >
+                <Text className="text-neutral-600 underline dark:text-neutral-300">
+                  {translate("purchases.restore")}
+                </Text>
+              </PressableScale>
+            </View>
+          ) : (
+            <Surface className="mt-6 p-4" testID="paywall-disabled">
+              <Text className="text-base text-neutral-500 dark:text-neutral-400">
+                {translate("purchases.not_configured")}
               </Text>
             </Surface>
-
-            {isPro ? (
-              <Text className="text-base text-neutral-500 dark:text-neutral-400">
-                {translate("purchases.pro_active")}
-              </Text>
-            ) : (
-              <UpgradeButton
-                loading={busy || !isReady}
-                onPress={() => run(presentPaywall)}
-              />
-            )}
-
-            <PressableScale
-              className="mt-4 self-center py-2"
-              onPress={() => run(restore)}
-              testID="paywall-restore"
-            >
-              <Text className="text-neutral-600 underline dark:text-neutral-300">
-                {translate("purchases.restore")}
-              </Text>
-            </PressableScale>
-          </View>
-        ) : (
-          <Surface className="mt-6 p-4" testID="paywall-disabled">
-            <Text className="text-base text-neutral-500 dark:text-neutral-400">
-              {translate("purchases.not_configured")}
-            </Text>
-          </Surface>
-        )}
+          )}
+        </ScreenContainer>
       </ScrollView>
     </>
   );

@@ -5,6 +5,7 @@ import { useUniwind } from "uniwind";
 import {
   colors,
   FocusAwareStatusBar,
+  ScreenContainer,
   ScrollView,
   Text,
   View,
@@ -47,92 +48,94 @@ export function SettingsScreen() {
         contentContainerStyle={{ paddingBottom: ANDROID_TAB_BAR_INSET }}
       >
         <View className="flex-1 px-4 pt-16">
-          <Text className="mb-4 font-bold text-xl">
-            {translate("settings.title")}
-          </Text>
-          <SettingsUserHeader />
-          <SettingsContainer title="settings.generale">
-            <LanguageItem />
-            <ThemeItem />
-            <HapticsItem />
+          <ScreenContainer>
+            <Text className="mb-4 font-bold text-xl">
+              {translate("settings.title")}
+            </Text>
+            <SettingsUserHeader />
+            <SettingsContainer title="settings.generale">
+              <LanguageItem />
+              <ThemeItem />
+              <HapticsItem />
+              {hasSession ? (
+                <SettingsItem
+                  onPress={() => router.push("/sessions")}
+                  text="settings.active_sessions"
+                />
+              ) : null}
+              {PURCHASES_ENABLED ? (
+                <SettingsItem
+                  onPress={() => router.push("/paywall")}
+                  text="settings.upgrade"
+                />
+              ) : null}
+              <BiometricLockItem />
+            </SettingsContainer>
+
+            <SettingsContainer title="settings.about">
+              <SettingsItem
+                text="settings.app_name"
+                value={Env.EXPO_PUBLIC_NAME}
+              />
+              <SettingsItem
+                text="settings.version"
+                value={Env.EXPO_PUBLIC_VERSION}
+              />
+            </SettingsContainer>
+
+            <SettingsContainer title="settings.support_us">
+              <SettingsItem
+                icon={<Share color={iconColor} />}
+                onPress={shareApp}
+                text="settings.share"
+              />
+              <SettingsItem
+                icon={<Rate color={iconColor} />}
+                onPress={rateApp}
+                text="settings.rate"
+              />
+              {isSupportVisible() && (
+                <SettingsItem
+                  icon={<Support color={iconColor} />}
+                  onPress={contactSupport}
+                  text="settings.support"
+                />
+              )}
+            </SettingsContainer>
+
+            <SettingsContainer title="settings.links">
+              <SettingsItem
+                onPress={() => router.push("/privacy")}
+                text="settings.privacy"
+              />
+              <SettingsItem
+                onPress={() => router.push("/terms")}
+                text="settings.terms"
+              />
+              {links.includes("github") && (
+                <SettingsItem
+                  icon={<Github color={iconColor} />}
+                  onPress={openGithub}
+                  text="settings.github"
+                />
+              )}
+              {links.includes("website") && (
+                <SettingsItem
+                  icon={<Website color={iconColor} />}
+                  onPress={openWebsite}
+                  text="settings.website"
+                />
+              )}
+            </SettingsContainer>
+
             {hasSession ? (
-              <SettingsItem
-                onPress={() => router.push("/sessions")}
-                text="settings.active_sessions"
-              />
+              <View className="my-8">
+                <SettingsContainer>
+                  <SettingsItem onPress={signOut} text="settings.logout" />
+                </SettingsContainer>
+              </View>
             ) : null}
-            {PURCHASES_ENABLED ? (
-              <SettingsItem
-                onPress={() => router.push("/paywall")}
-                text="settings.upgrade"
-              />
-            ) : null}
-            <BiometricLockItem />
-          </SettingsContainer>
-
-          <SettingsContainer title="settings.about">
-            <SettingsItem
-              text="settings.app_name"
-              value={Env.EXPO_PUBLIC_NAME}
-            />
-            <SettingsItem
-              text="settings.version"
-              value={Env.EXPO_PUBLIC_VERSION}
-            />
-          </SettingsContainer>
-
-          <SettingsContainer title="settings.support_us">
-            <SettingsItem
-              icon={<Share color={iconColor} />}
-              onPress={shareApp}
-              text="settings.share"
-            />
-            <SettingsItem
-              icon={<Rate color={iconColor} />}
-              onPress={rateApp}
-              text="settings.rate"
-            />
-            {isSupportVisible() && (
-              <SettingsItem
-                icon={<Support color={iconColor} />}
-                onPress={contactSupport}
-                text="settings.support"
-              />
-            )}
-          </SettingsContainer>
-
-          <SettingsContainer title="settings.links">
-            <SettingsItem
-              onPress={() => router.push("/privacy")}
-              text="settings.privacy"
-            />
-            <SettingsItem
-              onPress={() => router.push("/terms")}
-              text="settings.terms"
-            />
-            {links.includes("github") && (
-              <SettingsItem
-                icon={<Github color={iconColor} />}
-                onPress={openGithub}
-                text="settings.github"
-              />
-            )}
-            {links.includes("website") && (
-              <SettingsItem
-                icon={<Website color={iconColor} />}
-                onPress={openWebsite}
-                text="settings.website"
-              />
-            )}
-          </SettingsContainer>
-
-          {hasSession ? (
-            <View className="my-8">
-              <SettingsContainer>
-                <SettingsItem onPress={signOut} text="settings.logout" />
-              </SettingsContainer>
-            </View>
-          ) : null}
+          </ScreenContainer>
         </View>
       </ScrollView>
     </>

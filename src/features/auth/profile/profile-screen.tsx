@@ -4,6 +4,7 @@ import { Redirect, Stack } from "expo-router";
 import {
   ActivityIndicator,
   FocusAwareStatusBar,
+  ScreenContainer,
   ScrollView,
   Text,
   View,
@@ -66,27 +67,29 @@ export function ProfileScreen() {
         contentContainerClassName="flex-grow"
         contentInsetAdjustmentBehavior="automatic"
       >
-        <ProfileAvatar
-          onChoosePhoto={() => avatar.upload("library")}
-          onRemovePhoto={avatar.remove}
-          onTakePhoto={() => avatar.upload("camera")}
-          pending={avatar.pending}
-          user={user}
-        />
-        {avatar.error ? (
-          <Text
-            className="px-4 text-center text-danger-600"
-            testID="avatar-error"
-          >
-            {avatar.error}
-          </Text>
-        ) : null}
-        <ProfileForm
-          email={user.email}
-          initialValues={{ name: user.name, bio: user.bio ?? "" }}
-          onSubmit={onSubmit}
-        />
-        <DeleteAccount />
+        <ScreenContainer>
+          <ProfileAvatar
+            onChoosePhoto={() => avatar.upload("library")}
+            onRemovePhoto={avatar.remove}
+            onTakePhoto={() => avatar.upload("camera")}
+            pending={avatar.pending}
+            user={user}
+          />
+          {avatar.error ? (
+            <Text
+              className="px-4 text-center text-danger-600"
+              testID="avatar-error"
+            >
+              {avatar.error}
+            </Text>
+          ) : null}
+          <ProfileForm
+            email={user.email}
+            initialValues={{ name: user.name, bio: user.bio ?? "" }}
+            onSubmit={onSubmit}
+          />
+          <DeleteAccount />
+        </ScreenContainer>
       </ScrollView>
     </>
   );

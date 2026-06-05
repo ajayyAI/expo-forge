@@ -1,4 +1,9 @@
-import { FocusAwareStatusBar, SafeAreaView, ScrollView } from "@/components/ui";
+import {
+  FocusAwareStatusBar,
+  SafeAreaView,
+  ScreenContainer,
+  ScrollView,
+} from "@/components/ui";
 import { ANDROID_TAB_BAR_INSET } from "@/lib/tab-bar";
 import { Buttons } from "./components/buttons-demo";
 import { Colors } from "./components/colors-demo";
@@ -15,11 +20,13 @@ export function StyleScreen() {
         contentContainerStyle={{ paddingBottom: ANDROID_TAB_BAR_INSET }}
       >
         <SafeAreaView className="flex-1">
-          <Typography />
-          <Colors />
-          <Buttons />
-          <NativePolish />
-          <Inputs />
+          <ScreenContainer>
+            <Typography />
+            <Colors />
+            <Buttons />
+            <NativePolish />
+            <Inputs />
+          </ScreenContainer>
         </SafeAreaView>
       </ScrollView>
     </>
