@@ -16,6 +16,10 @@ import { translate } from "@/lib/i18n";
  *
  * Google's native module is imported lazily so web bundles — and the gates that
  * hide the button off-platform — don't pull in native-only code.
+ * expo-apple-authentication, by contrast, binds through
+ * `requireOptionalNativeModule`, so importing it is web-safe (it resolves to a
+ * stub whose methods throw only when called). It's imported statically on
+ * purpose; the iOS-gated button keeps `signInAsync` off web.
  */
 
 function isUserCancellation(message: string): boolean {
