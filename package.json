@@ -146,6 +146,9 @@
     "typescript": "~6.0.3",
     "ultracite": "^6.3.2"
   },
+  "overrides": {
+    "pretty-format": "29.7.0"
+  },
   "expo": {
     "doctor": {
       "reactNativeDirectoryCheck": {
