@@ -37,7 +37,7 @@ describe("ProfileForm", () => {
     const onSubmit = jest.fn();
     const { user } = renderForm({ onSubmit });
     await user.clear(screen.getByTestId("bio-input"));
-    await user.type(screen.getByTestId("bio-input"), "x".repeat(501));
+    await user.paste(screen.getByTestId("bio-input"), "x".repeat(501));
     await user.press(screen.getByTestId("save-button"));
     expect(
       // biome-ignore lint/performance/useTopLevelRegex: not a hot path (test/script)
